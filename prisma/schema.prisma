@@ -1,0 +1,136 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserType {
+  patient
+  professional
+  admin
+}
+
+enum Gender {
+  female
+  male
+  non_binary
+  other
+  prefer_not_to_say
+}
+
+enum RegisterType {
+  CRP
+  CRM
+  OTHER
+}
+
+model User {
+  id                 String    @id @default(uuid())
+  name               String
+  email              String    @unique
+  username           String    @unique
+  password_hash      String
+  type               UserType
+  avatar_url         String?
+  profile_completed  Boolean   @default(false)
+  email_verified_at  DateTime?
+  is_active          Boolean   @default(true)
+  last_login_at      DateTime?
+  created_at         DateTime  @default(now())
+  updated_at         DateTime  @updatedAt
+  deleted_at         DateTime?
+
+  patient      Patient?
+  professional Professional?
+
+  @@map("users")
+}
+
+model Patient {
+  id      String @id @default(uuid())
+  user_id String @unique
+
+  birth_date  DateTime?
+  gender      Gender?
+  cpf         String?
+  phone       String?
+
+  address_zipcode      String?
+  address_street       String?
+  address_number       String?
+  address_complement   String?
+  address_neighborhood String?
+  address_city         String?
+  address_state        String?
+
+  emergency_contact_name         String?
+  emergency_contact_phone        String?
+  emergency_contact_relationship String?
+
+  main_complaint           String?
+  therapy_goals            String?
+  current_medications      String?
+  has_previous_therapy     Boolean?
+  previous_therapy_notes   String?
+  has_psychiatric_follow_up Boolean?
+
+  has_health_insurance  Boolean?
+  health_insurance_name String?
+
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  deleted_at DateTime?
+
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@map("patients")
+}
+
+model Professional {
+  id      String @id @default(uuid())
+  user_id String @unique
+
+  full_name  String?
+  cpf        String?
+  phone      String?
+  birth_date DateTime?
+  gender     Gender?
+
+  professional_register String?
+  register_type         RegisterType?
+  register_state        String?
+  specialty             String?
+  bio                   String?
+  experience_years      Int?
+  approach              String?
+
+  document_url      String?
+  profile_photo_url String?
+
+  clinic_name           String?
+  consultation_price    Decimal?
+  offers_online_care    Boolean  @default(false)
+  offers_in_person_care Boolean  @default(false)
+
+  address_zipcode      String?
+  address_street       String?
+  address_number       String?
+  address_complement   String?
+  address_neighborhood String?
+  address_city         String?
+  address_state        String?
+
+  is_verified Boolean   @default(false)
+  verified_at DateTime?
+
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  deleted_at DateTime?
+
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@map("professionals")
+}
