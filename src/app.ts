@@ -31,8 +31,12 @@ export async function buildApp() {
 
   await app.register(helmet, { contentSecurityPolicy: false })
 
+  // CORS_ORIGIN='*'  → origin: true (reflects request origin — compatible with credentials)
+  // CORS_ORIGIN='https://example.com' → allows only that specific origin
+  const corsOrigin: boolean | string = env.CORS_ORIGIN === '*' ? true : env.CORS_ORIGIN
+
   await app.register(cors, {
-    origin: env.CORS_ORIGIN,
+    origin: corsOrigin,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,

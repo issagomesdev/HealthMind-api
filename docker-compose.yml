@@ -1,8 +1,8 @@
 services:
   api:
+    container_name: healthmind-api-dev
     build:
       context: .
-      target: builder
     ports:
       - '${PORT:-3333}:${PORT:-3333}'
     environment:
@@ -19,10 +19,16 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    logging:
+      driver: json-file
+      options:
+        max-size: '10m'
+        max-file: '3'
     networks:
       - healthmind-network
 
   postgres:
+    container_name: healthmind-postgres-dev
     image: postgres:16-alpine
     environment:
       POSTGRES_USER: postgres
@@ -37,6 +43,11 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+    logging:
+      driver: json-file
+      options:
+        max-size: '10m'
+        max-file: '3'
     networks:
       - healthmind-network
 
