@@ -3,6 +3,7 @@ services:
     container_name: healthmind-api-dev
     build:
       context: .
+      target: builder
     ports:
       - '${PORT:-3333}:${PORT:-3333}'
     environment:
