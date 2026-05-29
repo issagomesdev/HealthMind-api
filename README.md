@@ -20,6 +20,7 @@
   <a href="#testes">Testes</a> •
   <a href="#deploy">Deploy</a> •
   <a href="#seguranca">Segurança</a> •
+  <a href="#team">Equipe</a> •
   <a href="#related-projects">Projetos relacionados</a> •
   <a href="#licenca">Licença</a>
 </p>
@@ -589,9 +590,22 @@ docker logs healthmind-api --tail 100
 - [ ] Backups periódicos do volume do PostgreSQL
 - [ ] Monitorar logs da API em produção
 
+<h2 id="team">👥 Equipe</h2>
+
+| Nome | Papel | LinkedIn |
+|---|---|---|
+| Hayssa Gomes | Desenvolvimento Front-end & Produto | [LinkedIn](https://www.linkedin.com/in/issagomesdev) |
+| Vitoria Inacia | Produto, Pesquisa & Experiência | [LinkedIn](https://www.linkedin.com/in/vitoria-inacia-0a1086250) |
+| Kelvson Nilson | Desenvolvimento & Solução Técnica | [LinkedIn](https://www.linkedin.com/in/kelvson-nilson-129751286/) |
+| Leticia Oliveira | Pesquisa, Estratégia & Experiência | [LinkedIn](https://www.linkedin.com/in/-leticiaoliveira/) |
+| Arthur Santo | Produto, Tecnologia & Apresentação | [LinkedIn](https://www.linkedin.com/in/arthur-santo-b8651a2b6/) |
+
 <h2 id="related-projects">🔗 Projetos relacionados</h2>
 
-📱 Repositório do frontend mobile disponível <a href="https://github.com/issagomesdev/HealthMind">aqui</a>.
+| Projeto | Descrição | Link |
+|---|---|---|
+| **HealthMind App** | Aplicativo mobile do HealthMind, desenvolvido com React Native, Expo e TypeScript | <a href="https://github.com/issagomesdev/HealthMind">Acessar repositório</a> |
+| **HealthMind Page** | Landing page oficial do HealthMind, desenvolvida com React, Vite, TypeScript e Tailwind CSS | <a href="https://github.com/issagomesdev/HealthMindPage">Acessar repositório</a> |
 
 <h2 id="licenca">📄 Licença</h2>
 
